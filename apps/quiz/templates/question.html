@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div id="quiz"></div>
+    <button id="submit">Submit Quiz</button>
+    <div id="results"></div>
+{% endblock %}
+
+{% block extra_js %}
+<script type="text/javascript">
+    const quizContainer = document.getElementById('quiz');
+    const resultsContainer = document.getElementById('results');
+    const submitButton = document.getElementById('submit');
+    const Questions = {{data|safe}};
+
+
+    function buildQuiz(){
+        const output = [];
+        Questions.forEach(
+        (currentQuestion, questionNumber) => {
+            const answers = [];
+            for(letter in currentQuestion.answers){
+                answers.push(
+                    `<label>
+                    <input type="radio" name="question${questionNumber}" value="${currentQuestion.answers[letter]['name']}">
+                    ${currentQuestion.answers[letter]['name']}
+                    </label>`
+                );
+            }
+            output.push(
+            `<div class="question"> ${currentQuestion.question_name} </div>
+            <div class="answers"> ${answers.join('')} </div>`
+            );
+            }
+        );
+        quizContainer.innerHTML = output.join('');
+    }
+
+
+    function showResults(){
+        const answerContainers = quizContainer.querySelectorAll('.answers');
+        let numCorrect = 0;
+        Questions.forEach( (currentQuestion, questionNumber) => {
+            const answerContainer = answerContainers[questionNumber];
+            const selector = `input[name=question${questionNumber}]:checked`;
+            const userAnswer = (answerContainer.querySelector(selector) || {}).value;
+            console.log(userAnswer)
+            if(userAnswer === currentQuestion.correct){
+                numCorrect++;
+                answerContainers[questionNumber].style.color = 'lightgreen';
+            }
+            else{
+                answerContainers[questionNumber].style.color = 'red';
+            }
+        });
+
+        // show number of correct answers out of total
+        resultsContainer.innerHTML = `${numCorrect} out of ${Questions.length}`;
+        }
+
+
+    buildQuiz();
+    submitButton.addEventListener('click', showResults)
+</script>
+{% endblock%}

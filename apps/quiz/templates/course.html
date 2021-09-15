@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">Quiz para practicar previo al examen complexivo</h1>
+    <p class="lead">
+        Hecho por estudiantes para estudiantes
+    </p>
+    <button type="button" class="btn btn-info">Descargar el cuestionario de preguntas</button>
+</div>
+<div class="container">
+    <div class="row">
+        {% for i in courses%}
+        <div class="col-sm-6">
+            <div class="card mb-3">
+              <div class="card-body">
+                <h5 class="card-title">{{i.name}}</h5>
+                <p class="card-text">{{i.description}}</p>
+                <a href="{% url 'quiz:question' i.id_course %}" class="btn btn-primary">Realizar Quiz</a>
+              </div>
+            </div>
+        </div>
+        <hr>
+        {% endfor%}
+    </div>
+    <div class="text-center">
+        <p class="lead">
+            Hay un total <span class="font-weight-bold">{{questions_total}}</span> preguntas en general 
+        </p>
+    </div>
+</div>
+{% endblock %}
