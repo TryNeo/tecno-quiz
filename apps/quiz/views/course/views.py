@@ -19,7 +19,9 @@ class HomeView(ListView):
         }
         dataFin = []
         for i in range(len(data['id_course'])):
-            data['id_course'][i].update({'total_question':Question.objects.filter(id_theme__id_course =data['id_course'][i]['id_course']).count()})
+            data['id_course'][i].update({
+                'total_question':Question.objects.filter(id_theme__id_course =data['id_course'][i]['id_course']).count(),
+                'slug_name':data['id_course'][i]['name_course'].lower().replace(" ","-"),})
             dataFin.append(data['id_course'][i])
         response = JsonResponse(dataFin,safe=False)
         response.status_code = 200

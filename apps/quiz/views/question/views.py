@@ -1,7 +1,7 @@
 from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.views.generic import ListView
-
+import random
 from apps.quiz.modelos.model_question import *
 
 class QuestionView(ListView):
@@ -9,7 +9,7 @@ class QuestionView(ListView):
     context_object_name  = 'questions'
     template_name = 'Question/question.html'
 
-    def get(self, request,pk, *args, **kwargs):
+    def get(self, request,slug,pk, *args, **kwargs):
         data  = {
             'id_question' : [i.toJSON() for i in Question.objects.filter(id_theme__id_course=pk)] 
         }
@@ -24,6 +24,7 @@ class QuestionView(ListView):
         for i in range(len(dataFin)):
             for x in QuestionItem.objects.filter(id_question =dataFin[i]['id_question']):
                 dataFin[i]['answers'].append({'id_question_item':x.toJSON()['id_question_item'],'name':x.toJSON()['name']})
+        dataFin = random.sample(dataFin,10)
         response = JsonResponse(dataFin,safe=False)
         response.status_code = 200
         return render(request,self.template_name,{'data':dataFin})

@@ -10,5 +10,5 @@ register_converter(converters.HashidsConverter, 'hashids')
 
 urlpatterns = [
      path('', HomeView.as_view(), name='index'),
-     path('questions/<hashids:pk>', QuestionView.as_view(), name='question'),
+     path('course/<str:slug>/questions/<hashids:pk>', QuestionView.as_view(), name='question'),
 ]
