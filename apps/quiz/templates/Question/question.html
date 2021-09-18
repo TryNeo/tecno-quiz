@@ -1,9 +1,26 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="px-4 py-5">
+    <h1 class="display-5 fw-bold text-center mb-4">{{name_slug}}</h1>
+    <div class="col-lg-8 mx-auto">
+        <p class="lead mb-4 text-center">
+            Bienvenido 😀 , Aquí podrás encontrar una gran variedad de preguntas 
+            a resolver , el Quiz consta con 20 preguntas aleatorias para que puedas resolverlo sin límite de tiempo.
+            <br>
+            <span style="font-weight: 400;">Si deseas agregar una nueva pregunta , <a href="#">contáctanos</a> para que te podamos ayudar </span>
+        </p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <button type="button" onclick="return showQuiz('a');" class="btn btn-outline-secondary btn-lg px-4">Realizar Quiz</button>
+      </div>
+    </div>
+  </div>
+    {% comment %}
     <div id="quiz"></div>
     <button id="submit">Submit Quiz</button>
     <div id="results"></div>
+    {% endcomment %}
 {% endblock %}
+{% comment %}
 
 {% block extra_js %}
 <script type="text/javascript">
@@ -62,3 +79,4 @@
     submitButton.addEventListener('click', showResults)
 </script>
 {% endblock%}
+{% endcomment %}

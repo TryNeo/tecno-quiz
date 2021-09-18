@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-    <h1 class="display-4">Simulador para practicar previo al examen complexivo</h1>
+    <h1 class="display-4 fw-bold">Simulador para practicar previo al examen complexivo</h1>
     <p class="lead">
         Hecho por estudiantes para estudiantes
     </p>
-    <button type="button" class="btn btn-info">Descargar el cuestionario de preguntas</button>
+    <button type="button" class="btn btn-info btn-lg px-4 gap-3">Descargar el cuestionario de preguntas</button>
 </div>
 <section id="testimonial">
     <div class="container">
@@ -13,11 +13,11 @@
             <div class="owl-carousel">
                 {% for i in courses%}
                 <div class="col-md-12 testimonial-box">
-                        <div class="card shadow-sm border-light mb-4">
+                        <div class="card shadow-lg p-3 mb-5 bg-white rounded">
                             <div class="card-body">
                                 <h5 class="font-weight-normal">{{i.name_course}}</h5>
                                 <div class="d-flex my-4">
-                                    <a href="{% url 'quiz:question' i.slug_name i.id_course %}" class="btn btn-primary">Realizar Quiz</a>
+                                    <a href="{% url 'quiz:question' i.slug_name i.id_course %}" class="btn btn-primary">Ir al Curso</a>
                                 </div>
                                 <div class="mt-2">
                                     <div class="progress">
