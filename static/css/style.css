@@ -1,0 +1,118 @@
+.b-example-divider {
+    height: 3rem;
+    background-color: rgba(0, 0, 0, .1);
+    border: solid rgba(0, 0, 0, .15);
+    border-width: 1px 0;
+    box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+  }
+  
+  .bi {
+    vertical-align: -.125em;
+    fill: currentColor;
+  }
+  
+  .opacity-50 { opacity: .5; }
+  .opacity-75 { opacity: .75; }
+  
+  .list-group {
+    width: auto;
+    max-width: 460px;
+    margin: 4rem auto;
+  }
+  
+  .form-check-input:checked + .form-checked-content {
+    opacity: .5;
+  }
+  
+  .form-check-input-placeholder {
+    pointer-events: none;
+    border-style: dashed;
+  }
+  [contenteditable]:focus {
+    outline: 0;
+  }
+  
+  .list-group-checkable {
+    display: grid;
+    gap: .5rem;
+    border: 0;
+  }
+  .list-group-checkable .list-group-item {
+    cursor: pointer;
+    border-radius: .5rem;
+  }
+
+
+  .list-group-item-check {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+    pointer-events: none;
+  }
+
+ 
+  .list-group-item-check:hover + .list-group-item {
+    background-color: var(--bs-light);
+  }
+  .list-group-item-check:checked + .list-group-item {
+    color: #fff;
+    background-color: var(--bs-blue);
+  }
+
+  .list-group-item +.error-list:checked{
+    color: #fff;
+    background-color: var(--bs-blue);
+  }
+
+  .list-group-item-check[disabled] + .list-group-item,
+  .list-group-item-check:disabled + .list-group-item {
+    pointer-events: none;
+    filter: none;
+    opacity: .5;
+  }
+  
+.display-none {
+    display: none;
+}
+
+.bg-purple{
+    background-color: #6f42c1;
+}
+
+.card {
+    border: none;
+    border-radius: 10px
+}
+
+.c-details span {
+    font-weight: 300;
+    font-size: 13px
+}
+
+
+.badge span {
+    background-color: #fffbec;
+    width: 60px;
+    height: 25px;
+    padding-bottom: 3px;
+    border-radius: 5px;
+    display: flex;
+    color: green;
+    justify-content: center;
+    align-items: center
+}
+
+.progress {
+    height: 10px;
+    border-radius: 10px
+}
+.progress div {
+    background-color: #23E028;
+}
+.text1 {
+    font-size: 14px;
+    font-weight: 600
+}
+.text2 {
+    color: #a5aec0
+}
+

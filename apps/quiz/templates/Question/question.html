@@ -1,82 +1,61 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-<div class="px-4 py-5">
+<div id="loaderForm" class="loader loader-default"></div>
+<div id="infoQuiz"class="px-4 py-5">
     <h1 class="display-5 fw-bold text-center mb-4">{{name_slug}}</h1>
     <div class="col-lg-8 mx-auto">
         <p class="lead mb-4 text-center">
             Bienvenido 😀 , Aquí podrás encontrar una gran variedad de preguntas 
-            a resolver , el Quiz consta con 20 preguntas aleatorias para que puedas resolverlo sin límite de tiempo.
+            a resolver , el Quiz consta con 10 preguntas aleatorias para que puedas resolverlo sin límite de tiempo.
             <br>
             <span style="font-weight: 400;">Si deseas agregar una nueva pregunta , <a href="#">contáctanos</a> para que te podamos ayudar </span>
         </p>
-      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center text-center">
-        <button type="button" onclick="return showQuiz('a');" class="btn btn-outline-secondary btn-lg px-4">Realizar Quiz</button>
-      </div>
+        
+        {% if data %}
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center text-center">
+                <button type="button" onclick="return showQuiz('#loaderForm','#infoQuiz',1);" class="btn btn-outline-secondary btn-lg px-4">Realizar Quiz</button>
+            </div>
+        {% else %}
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center text-center">
+                <button type="button" onclick="return showQuiz('#loaderForm','#infoQuiz',0);" class="btn btn-outline-secondary btn-lg px-4">Realizar Quiz</button>
+            </div>
+        {% endif %}
+            
+
+ 
     </div>
-  </div>
-    {% comment %}
-    <div id="quiz"></div>
-    <button id="submit">Submit Quiz</button>
-    <div id="results"></div>
-    {% endcomment %}
+</div>
+<div id="quizForm"class="px-4 display-none">
+    <h1 class="display-5 fw-bold text-center mb-4">Diviertet </h1>
+    <div class="col-lg-8 mx-auto">
+        <p class="lead mb-4 text-center">
+            
+            <br>
+        </p>
+    </div>
+    <div class="container">
+        
+        <div class="quiz-container mb-4">
+            <div id="quiz"></div>
+        </div>
+
+    </div>
+    <div class="d-grid gap-4 d-md-flex justify-content-center buttonMargin">
+        <button id="previous" class="btn btn-outline-primary">Anterior pregunta</button>
+        <button id="next" class="btn btn-outline-primary">Siguiente pregunta</button>
+        <button id="submit" class="btn btn-outline-primary">Ver Resultados</button>
+    </div>
+</div>
+
+
 {% endblock %}
-{% comment %}
+
+
 
 {% block extra_js %}
 <script type="text/javascript">
-    const quizContainer = document.getElementById('quiz');
-    const resultsContainer = document.getElementById('results');
-    const submitButton = document.getElementById('submit');
-    const Questions = {{data|safe}};
-
-
-    function buildQuiz(){
-        const output = [];
-        Questions.forEach(
-        (currentQuestion, questionNumber) => {
-            const answers = [];
-            for(letter in currentQuestion.answers){
-                answers.push(
-                    `<label>
-                    <input type="radio" name="question${questionNumber}" value="${currentQuestion.answers[letter]['name']}">
-                    ${currentQuestion.answers[letter]['name']}
-                    </label>`
-                );
-            }
-            output.push(
-            `<div class="question"> ${currentQuestion.question_name} </div>
-            <div class="answers"> ${answers.join('')} </div>`
-            );
-            }
-        );
-        quizContainer.innerHTML = output.join('');
-    }
-
-
-    function showResults(){
-        const answerContainers = quizContainer.querySelectorAll('.answers');
-        let numCorrect = 0;
-        Questions.forEach( (currentQuestion, questionNumber) => {
-            const answerContainer = answerContainers[questionNumber];
-            const selector = `input[name=question${questionNumber}]:checked`;
-            const userAnswer = (answerContainer.querySelector(selector) || {}).value;
-            console.log(userAnswer)
-            if(userAnswer === currentQuestion.correct){
-                numCorrect++;
-                answerContainers[questionNumber].style.color = 'lightgreen';
-            }
-            else{
-                answerContainers[questionNumber].style.color = 'red';
-            }
-        });
-
-        // show number of correct answers out of total
-        resultsContainer.innerHTML = `${numCorrect} out of ${Questions.length}`;
-        }
-
-
-    buildQuiz();
-    submitButton.addEventListener('click', showResults)
+    var Questions = {{data|safe}};
 </script>
+<script src="{% static 'quiz/functions_quiz.js' %}"></script>
 {% endblock%}
-{% endcomment %}

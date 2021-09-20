@@ -26,7 +26,7 @@ class QuestionView(ListView):
             for i in range(len(dataFin)):
                 for x in QuestionItem.objects.filter(id_question =dataFin[i]['id_question']):
                     dataFin[i]['answers'].append({'id_question_item':x.toJSON()['id_question_item'],'name':x.toJSON()['name']})
-            dataFin = random.sample(dataFin,20)
+            dataFin = random.sample(dataFin,10)
         response = JsonResponse(dataFin,safe=False)
         response.status_code = 200
         return render(request,self.template_name,{'data':dataFin,'name_slug':name_slug})
