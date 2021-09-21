@@ -28,9 +28,6 @@ function buildQuiz(){
                         ${answers.join('')}
                     </div>
                 </div>
-                <div class="card-footer">
-                    
-                </div>
             </div>
         </div>
         `
@@ -68,6 +65,7 @@ function showResults(){
     }else{
         showMessage('No respondiste ninguna pregunta 😡','error',numCorrect,Questions.length);
     }
+    $("input").prop('disabled', true);
 }
 
 function showSlide(n) {

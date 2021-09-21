@@ -1,3 +1,25 @@
+function mensaje(icon,title,text){
+    Swal.fire({
+        icon: icon,
+        title: title,
+        text: text,
+    })
+}
+
+function mensaje_json(icon,title,json){
+    let message = '<ul style="list-style:none;text-align: center;">';
+    for (const dataKey in json ) {
+        message+='<li>'+json[dataKey]+'</li>';
+     }
+    message+='</ul>';
+    Swal.fire({
+        icon: icon,
+        title: title,
+        html: message,
+    })
+}
+
+
 function showQuiz(loaderId,infoQuizId,status){
     if(status){
         Swal.fire({

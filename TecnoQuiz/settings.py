@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.quiz',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -133,6 +134,15 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.environ['USUARIO_CORREO']
+EMAIL_HOST_PASSWORD = os.environ['CONTRA_EMAIL']
+
 
 HASHIDS = {
     'SALT': 'OuidSd4wuXIroX1sidoBcRc4mn7qbU5i',
