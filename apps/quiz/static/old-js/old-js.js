@@ -8,6 +8,10 @@ function buildQuiz(){
     Questions.forEach(
     (currentQuestion, questionNumber) => {
         const answers = [];
+        const image_url = '#'
+        if(currentQuestion.image_url != ''){
+            image_url = currentQuestion.image_url;
+        }
         for(letter in currentQuestion.answers){
             answers.push(
                 `<div class="col-md-6 mb-4">
@@ -24,6 +28,9 @@ function buildQuiz(){
             <div class="col-12 mx-auto card shadow p-3 mb-5 bg-white rounded"> 
                 <div class="card-header mb-4">${currentQuestion.question_name}</div>
                 <div class="card-body">
+                    <div class="text-center">
+                        <img src="${image_url}" class="img-fluid" >
+                    </div>
                     <div class="row" id="demo">
                         ${answers.join('')}
                     </div>

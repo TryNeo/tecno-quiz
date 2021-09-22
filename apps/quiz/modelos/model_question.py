@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.fields import URLField
 from django.forms import model_to_dict
 
 from apps.quiz.modelos.model_theme import *
@@ -7,6 +8,7 @@ from apps.quiz.modelos.model_theme import *
 class Question(models.Model):
     id_question = models.AutoField(primary_key=True)
     question_name = models.CharField("Pregunta", max_length=250)
+    image = models.URLField("Imagen",max_length = 200,blank=True,null=True)
     id_theme = models.ForeignKey(Theme, related_name='Tema', on_delete=models.CASCADE)
     
     class Meta:

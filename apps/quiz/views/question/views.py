@@ -17,9 +17,13 @@ class QuestionView(ListView):
         dataFin = []
         if len(data['id_question']) !=0:
             for i in range(len(data['id_question'])):
+                image = ''
+                if(data['id_question'][i]['image'] != None):
+                    image = data['id_question'][i]['image']
                 dataFin.append({
                     'id_question':data['id_question'][i]['id_question'],
                     'question_name':data['id_question'][i]['question_name'],
+                    'image_url': image,
                     'answers':[],
                     'correct': [x.toJSON() for x in QuestionItem.objects.filter(id_question =data['id_question'][i]['id_question'],correct=True)][0]['name']
                     })
