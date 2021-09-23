@@ -63,15 +63,40 @@ function showQuiz(loaderId,infoQuizId,status){
     }
 }
 
-function showMessage(title,icon,correct,totalQuestion){
+function showMessage(title,icon,correct,totalQuestion,correctRes = [],statusResp=false){
+    let viewText = '';
+    if(statusResp){
+        let litext = "";
+        correctRes.forEach((currentName,currentNum) => {
+            let lilNu = ''
+            if(currentName.correct){
+                lilNu+='<li><span style="color:green;">'+currentName.name+'</span></li>'
+            }else{
+                if(currentName.name === undefined ){
+                    lilNu+='<li><span style="color:red;">sin respueta</span></li>'
+                }else{
+                    lilNu+='<li><span style="color:red;">'+currentName.name+'</span></li>'
+                }
+            }
+            litext+=lilNu
+        });
+         viewText= '<p style="text-align:left;">Repuestas:<p>'+
+        '<ol style="text-align:left;">'+
+            litext+
+        '</ol>'
+    }
+
     Swal.fire({
         title: title,
         icon: icon,
-        html:'Obtuviste un puntaje de <strong>'+correct+'/'+totalQuestion+'</strong>',
-        showCancelButton: false,
+        html:
+            'Obtuviste un puntaje de <strong>'+correct+'/'+totalQuestion+'</strong>'+viewText,
+        showCancelButton: true,
         confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
         confirmButtonText: 'Intentarlo nuevamente',
         allowOutsideClick: false,
+        cancelButtonText:'Ver respuestas'
       }).then((result) => {
         if (result.isConfirmed) {
             $('#loaderForm').addClass("is-active");
@@ -79,6 +104,8 @@ function showMessage(title,icon,correct,totalQuestion){
                 $('#loaderForm').removeClass("is-active");
                 window.location.reload();
             },3000);
+        }else{
+           
         }
     })
 }

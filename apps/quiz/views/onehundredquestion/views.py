@@ -1,6 +1,5 @@
 
-from django.http.response import HttpResponse, JsonResponse
-from django.shortcuts import render
+from django.http.response import JsonResponse
 from django.views.generic import ListView
 
 from apps.quiz.modelos.model_course import *
@@ -18,36 +17,38 @@ class OnehundredQuestionView(ListView):
 
 
     def post(self, request, *args, **kwargs):
-        dataa = {}
         data = {}
-        try:
-            if request.is_ajax():
-                filter_data = request.POST['courses'].split(",")
-                lista = []
-                for i in filter_data:
-                    for x in Question.objects.filter(id_theme__id_course__name_course=i):
-                        lista.append(x.toJSON())
-                data['id_question'] = lista
+        if request.is_ajax():
+            filter_data = request.POST['courses'].split(",")
+            lista = []
+            for i in filter_data:
+                for x in Question.objects.filter(id_theme__id_course__name_course=i):
+                    lista.append(x.toJSON())
+            data['id_question'] = lista
             dataFin = []
-            if len(data['id_question']) !=0:
-                for i in range(len(data['id_question'])):
-                    image = ''
-                    if(data['id_question'][i]['image'] != None):
-                        image = data['id_question'][i]['image']
-                    dataFin.append({
-                        'id_question':data['id_question'][i]['id_question'],
-                        'question_name':data['id_question'][i]['question_name'],
-                        'image_url': image,
-                        'answers':[],
-                        'correct': [x.toJSON() for x in QuestionItem.objects.filter(id_question =data['id_question'][i]['id_question'],correct=True)][0]['name']
-                        })
-                for i in range(len(dataFin)):
-                    for x in QuestionItem.objects.filter(id_question =dataFin[i]['id_question']):
-                        dataFin[i]['answers'].append({'id_question_item':x.toJSON()['id_question_item'],'name':x.toJSON()['name']})
-            dataFin = random.sample(dataFin,100)
-        except Exception as e:
-            dataa['error'] = str(e)
-        return JsonResponse(dataa)
+            if len(data['id_question']) >= 200:
+                if len(data['id_question']) !=0:
+                        for i in range(len(data['id_question'])):
+                            image = ''
+                            if(data['id_question'][i]['image'] != None):
+                                image = data['id_question'][i]['image']
+                            dataFin.append({
+                                'id_question':data['id_question'][i]['id_question'],
+                                'question_name':data['id_question'][i]['question_name'],
+                                'image_url': image,
+                                'answers':[],
+                                'correct': [x.toJSON() for x in QuestionItem.objects.filter(id_question =data['id_question'][i]['id_question'],correct=True)][0]['name']
+                                })
+                        for i in range(len(dataFin)):
+                            for x in QuestionItem.objects.filter(id_question =dataFin[i]['id_question']):
+                                dataFin[i]['answers'].append({'id_question_item':x.toJSON()['id_question_item'],'name':x.toJSON()['name']})
+                dataFin = random.sample(dataFin,100)
+                response = JsonResponse(dataFin,safe=False)
+                response.status_code = 200
+            else:
+                response = JsonResponse(dataFin,safe=False)
+                response.status_code = 200
+        return response
 
 
 

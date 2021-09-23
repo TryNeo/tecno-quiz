@@ -15,7 +15,7 @@ class QuestionView(ListView):
             'id_question' : [i.toJSON() for i in Question.objects.filter(id_theme__id_course=pk)] 
         }
         dataFin = []
-        if len(data['id_question']) !=0:
+        if len(data['id_question']) !=0 and len(data['id_question']) > 10:
             for i in range(len(data['id_question'])):
                 image = ''
                 if(data['id_question'][i]['image'] != None):

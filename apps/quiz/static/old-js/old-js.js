@@ -72,7 +72,6 @@ function showResults(){
     }else{
         showMessage('No respondiste ninguna pregunta 😡','error',numCorrect,Questions.length);
     }
-    $("input").prop('disabled', true);
 }
 
 function showSlide(n) {
