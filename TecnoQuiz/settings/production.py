@@ -7,6 +7,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['tecno-quiz.herokuapp.com']
 
+GOOGLE_RECAPTCHA_SECRET_KEY = config('GOOGLE_SECRET_KEY')
 
 DATABASES = {
     'default': dj_database_url.config(
