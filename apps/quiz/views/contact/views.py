@@ -7,7 +7,7 @@ from django.views.generic.edit import FormView
 from django.urls import reverse_lazy
 from django.core.mail import EmailMessage
 
-from django.conf import settings
+from TecnoQuiz.settings.local import EMAIL_HOST_USER
 
 
 import threading
@@ -25,7 +25,7 @@ def send_email(name, email, subject, message):
     send_email = EmailMessage(
         subject,
         template_email,
-        settings.EMAIL_HOST_USER,
+        EMAIL_HOST_USER,
         [os.environ['USUARIO_CORREO']]
     )
     send_email.fail_silently = False
