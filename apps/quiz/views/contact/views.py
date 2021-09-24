@@ -68,7 +68,7 @@ class ContactView(FormView):
                         thread.start()
                         data = {'status': 1, 'message': 'Mensaje enviado correctamente'}
                     else:
-                        data = {'status': 0, 'message': 'reCaPTCHA invalidado, Porfavor intentalo nuevamente'}
+                        data = {'status': 0, 'message': {'reCAPTCHA':'reCaPTCHA invalidado, Porfavor intentalo nuevamente'}}
                 else:
                     data = {'status': 0, 'message': form.errors}
         except Exception as e:
