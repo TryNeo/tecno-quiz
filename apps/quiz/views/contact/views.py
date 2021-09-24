@@ -7,8 +7,7 @@ from django.views.generic.edit import FormView
 from django.urls import reverse_lazy
 from django.core.mail import EmailMessage
 
-from TecnoQuiz.settings.local import EMAIL_HOST_USER
-
+from TecnoQuiz.settings.production import EMAIL_HOST_USER
 
 import threading
 import os
