@@ -59,14 +59,14 @@ En esta sección se mostrará una lista de tecnologías que se usaron para la cr
 * [Owl Carousel](https://kiranworkspace.com/demo/projects/code-snippets/testimonials/owl-testimonial/)
 
 
-## License
+## Licencia
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
 
 
 <!-- CONTACT -->
-## Contact
+## Contacto
 
 Josue Lopez - ts.josu3@gmail.com
 
