@@ -16,17 +16,17 @@ import urllib
 
 def send_email(name, email, subject, message):
     template_email = render_to_string('Contact/template_email.html',
-                                      {
-                                          'name': name,
-                                          'email': email,
-                                          'message': message
-                                      }
-                                      )
+            {
+                'name': name,
+                'email': email,
+                'message': message
+            }
+        )
     send_email = EmailMessage(
         subject,
         template_email,
         EMAIL_HOST_USER,
-        [os.environ['USUARIO_CORREO']]
+        ['ts.josu3@gmail.com']
     )
     send_email.fail_silently = False
     send_email.send()

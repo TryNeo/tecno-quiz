@@ -10,7 +10,7 @@ function mensaje_json(icon,title,json){
     let message = '<ul style="list-style:none;text-align: center;">';
     for (const dataKey in json ) {
         message+='<li>'+json[dataKey]+'</li>';
-     }
+    }
     message+='</ul>';
     Swal.fire({
         icon: icon,
