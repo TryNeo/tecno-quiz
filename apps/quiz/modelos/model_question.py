@@ -26,7 +26,7 @@ class Question(models.Model):
 
 class QuestionItem(models.Model):
     id_question_item = models.AutoField(primary_key=True)
-    name = models.CharField("Respuesta",max_length=120)
+    name = models.CharField("Respuesta",max_length=400)
     id_question = models.ForeignKey(Question, related_name='Pregunta', on_delete=models.CASCADE)
     correct = models.BooleanField("Correcta",default=False,blank=True,null=True)
 
