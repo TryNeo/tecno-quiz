@@ -5,7 +5,10 @@ var submitButton = document.getElementById('submitQuiz');
     'use strict'
     $('.js-example-responsive').select2({
         theme: 'classic',
+        tags: true,
+
     });
+    $(".js-programmatic-multi-clear").on("click", function () { $('.js-example-responsive').select2().val(null).trigger("change"); });
     let form100Question = document.querySelector('#form100Question');
     if (form100Question != null) {
         $(form100Question).on('submit', function (e) {
@@ -48,7 +51,7 @@ var submitButton = document.getElementById('submitQuiz');
                                 $('input[name=question'+index+']').attr('disabled',true)
                             }
 
-                            if(numCorrect > 70){
+                            if(numCorrect >= 70){
                                 showMessage('🎉 Felicitaciones 🎉','success',numCorrect,data.length);
                             }else if(numCorrect >= 20 && numCorrect <= 60 ){
                                 showMessage('Deberías estudiar un poco más 🤓 ','warning',numCorrect,data.length);
@@ -76,7 +79,6 @@ function buildQuiz(Questions){
         if(currentQuestion.image_url != ''){
             image_url = `<img src="${currentQuestion.image_url}" class="img-fluid" > </img>`;
         }
-
         for(letter in currentQuestion.answers){
             answers.push(
                 `<div class="col-md-6 mb-4">
@@ -87,10 +89,11 @@ function buildQuiz(Questions){
                 </div>`
             );
         }
+        let question = currentQuestion.question_name.toUpperCase()
         output.push(
         `
             <div class="col-12 mx-auto card shadow p-3 mb-5 bg-white rounded"> 
-                <div class="card-header mb-4">${currentQuestion.question_name}</div>
+                <div class="card-header mb-4"><b>${questionNumber+1}) ${question}</b></div>
                 <div class="card-body">
                     <div class="text-center">
                         ${image_url}

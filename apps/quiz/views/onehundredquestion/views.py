@@ -27,7 +27,7 @@ class OnehundredQuestionView(ListView):
                     lista.append(x.toJSON())
             data['id_question'] = lista
             dataFin = []
-            if len(data['id_question']) > 100:
+            if len(data['id_question']) > 101:
                 if len(data['id_question']) !=0:
                         for i in range(len(data['id_question'])):
                             image = ''
@@ -44,7 +44,6 @@ class OnehundredQuestionView(ListView):
                             for x in QuestionItem.objects.filter(id_question =dataFin[i]['id_question']):
                                 dataFin[i]['answers'].append({'id_question_item':x.toJSON()['id_question_item'],'name':x.toJSON()['name']})
                 dataFin = random.sample(dataFin,100)
-                
                 response = JsonResponse(dataFin,safe=False)
                 response.status_code = 200
             else:
