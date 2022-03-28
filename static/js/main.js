@@ -103,7 +103,7 @@ function showMessage(title,icon,correct,totalQuestion,correctRes = [],statusResp
             setInterval(() => {
                 $('#loaderForm').removeClass("is-active");
                 window.location.reload();
-            },3000);
+            },1000);
         }else{
            
         }
