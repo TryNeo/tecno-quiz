@@ -74,9 +74,10 @@ function buildQuiz(Questions){
     Questions.forEach(
     (currentQuestion, questionNumber) => {
         const answers = [];
-        const image_url = ''
+        let image_url = ''
         if(currentQuestion.image_url != ''){
-            image_url = `<img src="${currentQuestion.image_url}" class="img-fluid" > </img>`;
+            console.log(currentQuestion.image_url)
+            image_url = `<img src=${currentQuestion.image_url} class="img-fluid"></img>`
         }
         for(letter in currentQuestion.answers){
             answers.push(
