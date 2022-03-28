@@ -15,7 +15,7 @@
     {% csrf_token %}
     <div class="form-group mb-4">
         <div class="col-sm-12">
-            <select class="js-example-responsive form-control" name="course" style="width: 90%;" multiple="multiple">
+            <select class="js-example-responsive form-control" name="course" style="width: 100%;" multiple="multiple">
                 {% for i in courses %}
                     <option value="{{i.name_course}}">{{i.name_course}}</option>
                 {% endfor %}
