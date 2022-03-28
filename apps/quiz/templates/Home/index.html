@@ -6,7 +6,7 @@
     <p class="lead">
         Hecho por estudiantes para estudiantes
     </p>
-    <a href="#" download="CuestionarioExamenComplexivo"class="btn btn-danger px-4">Descargar el cuestionario de preguntas</a>
+    <a href="{% static '/files/FINAL_preguntas_examen_complexivo.xlsx' %}" download="CuestionarioExamenComplexivo"class="btn btn-danger px-4">Descargar el cuestionario de preguntas</a>
 </div>
 <section id="testimonial">
     <div class="container">
@@ -46,7 +46,7 @@
         </div>
         <div class="text-center">
             <p class="lead">
-                Hay un total <strong>{{questions_total}}</strong> preguntas en general 
+                Hay un total <b>{{questions_total}}</b> preguntas en general 
             </p>
         </div>
     </div>

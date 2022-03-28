@@ -63,12 +63,14 @@ function showResults(){
             numCorrect++;
             respo.push({'correct':true,'name':userAnswer})
             answerContainers[questionNumber].classList.remove("GroupError");
+            answerContainers[questionNumber].classList.remove("GroupInputError");
             answerContainers[questionNumber].classList.add("GroupGree");
         }
         else{
             respo.push({'correct':false,'name':userAnswer})
             answerContainers[questionNumber].classList.remove("GroupGree");
             answerContainers[questionNumber].classList.add("GroupError");
+            answerContainers[questionNumber].classList.add("GroupInputError");
         }
     });
     for (let index = 0; index < Questions.length; index++) {

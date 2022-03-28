@@ -39,11 +39,13 @@ var submitButton = document.getElementById('submitQuiz');
                                 if(userAnswer === currentQuestion.correct){
                                     numCorrect++;
                                     answerContainers[questionNumber].classList.remove("GroupError");
+                                    answerContainers[questionNumber].classList.remove("GroupInputError");
                                     answerContainers[questionNumber].classList.add("GroupGree");
                                 }
                                 else{
                                     answerContainers[questionNumber].classList.remove("GroupGree");
                                     answerContainers[questionNumber].classList.add("GroupError");
+                                    answerContainers[questionNumber].classList.add("GroupInputError");
                                 }
                             });
                             for (let index = 0; index < data.length; index++) {
