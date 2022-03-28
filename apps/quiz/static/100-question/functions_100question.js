@@ -8,7 +8,6 @@ var submitButton = document.getElementById('submitQuiz');
         tags: true,
 
     });
-    $(".js-programmatic-multi-clear").on("click", function () { $('.js-example-responsive').select2().val(null).trigger("change"); });
     let form100Question = document.querySelector('#form100Question');
     if (form100Question != null) {
         $(form100Question).on('submit', function (e) {
