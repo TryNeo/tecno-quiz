@@ -36,16 +36,21 @@ var submitButton = document.getElementById('submitQuiz');
                                 const answerContainer = answerContainers[questionNumber];
                                 const selector = `input[name=question${questionNumber}]:checked`;
                                 const userAnswer = (answerContainer.querySelector(selector) || {}).value;
+                                let answer = document.querySelector('.answer_correct'+questionNumber);
                                 if(userAnswer === currentQuestion.correct){
                                     numCorrect++;
                                     answerContainers[questionNumber].classList.remove("GroupError");
                                     answerContainers[questionNumber].classList.remove("GroupInputError");
                                     answerContainers[questionNumber].classList.add("GroupGree");
                                 }
+                                else if (userAnswer === undefined){
+                                    answer.innerHTML =  "<strong style='color:red;'>RESPUESTA CORRECTA : Sin respuesta alguna </strong>";
+                                }
                                 else{
                                     answerContainers[questionNumber].classList.remove("GroupGree");
                                     answerContainers[questionNumber].classList.add("GroupError");
                                     answerContainers[questionNumber].classList.add("GroupInputError");
+                                    answer.innerHTML =  "<strong style='color:green;'>RESPUESTA CORRECTA : "+currentQuestion.correct+"</strong>";
                                 }
                             });
                             for (let index = 0; index < data.length; index++) {
@@ -100,6 +105,7 @@ function buildQuiz(Questions){
                     <div class="text-center">
                         ${image_url}
                     </div>
+                    <div class="answer_correct${questionNumber}"></div>
                     <div class="row" id="demo">
                         ${answers.join('')}
                     </div>
