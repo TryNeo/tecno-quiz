@@ -3,25 +3,29 @@ var submitButton = document.getElementById('submitQuiz');
 
 (function () {
     'use strict'
-    $('.js-example-responsive').select2({
-        theme: 'classic',
-        tags: true,
-
+    $('select[multiple].active.3col').multiselect({
+        columns: 1,
+        placeholder: 'Selecciona las materias',
+        search: true,
+        searchOptions: {
+            'default': 'Buscas las materias'
+        },
+        selectAll: true
     });
     let form100Question = document.querySelector('#form100Question');
     if (form100Question != null) {
         $(form100Question).on('submit', function (e) {
             e.preventDefault();
-            if($('.js-example-responsive').val().length != 0 && $('.js-example-responsive').val().length > 1){
+            if($('.3col').val().length != 0 && $('.3col').val().length > 1){
                 let form_data = $(this).serializeArray();
-                form_data.push({name: 'courses', value: $('.js-example-responsive').val()});
+                form_data.push({name: 'courses', value: $('.3col').val()});
                 $.ajax({
                     url: url_100question,
                     type: 'POST',
                     data: form_data,
                     dataType: 'json'
                     }).done(function (data) {
-                        $('.js-example-responsive').val(null).trigger('change');
+                        $('.3col').val(null).trigger('change');
                         $('#loaderForm').addClass("is-active");
                         setTimeout(() => {
                             $('#loaderForm').removeClass("is-active");
@@ -70,6 +74,7 @@ var submitButton = document.getElementById('submitQuiz');
                     })
             }else{
                 mensaje('warning','filtro invalido',"Para generar el examen, debes de elegir mas de un curso")
+                console.log($('.3col').val())
             }   
         })
     }
